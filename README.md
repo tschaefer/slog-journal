@@ -23,7 +23,7 @@ No breaking changes will be made to exported APIs before v1.0.0.
 
 ## 💡 Usage
 
-GoDoc: [https://pkg.go.dev/github.com/samber/slog-loki/v3](https://pkg.go.dev/github.com/samber/slog-loki/v3)
+GoDoc: [https://pkg.go.dev/github.com/tschaefer/slog-journal](https://pkg.go.dev/github.com/tschaefer/slog-journal)
 
 ### Handler options
 
