@@ -19,11 +19,11 @@ go get github.com/tschaefer/slog-journal
 
 **Compatibility**: go >= 1.23
 
-No breaking changes will be made to exported APIs.
+No breaking changes will be made to exported APIs before v1.0.0.
 
 ## 💡 Usage
 
-GoDoc: [https://pkg.go.dev/github.com/samber/slog-loki/v3](https://pkg.go.dev/github.com/samber/slog-loki/v3)
+GoDoc: [https://pkg.go.dev/github.com/tschaefer/slog-journal](https://pkg.go.dev/github.com/tschaefer/slog-journal)
 
 ### Handler options
 
@@ -43,7 +43,14 @@ type Option struct {
 }
 ```
 
-Attributes will be injected in journal entry fields.
+Attributes will be injected in journal entry fields. Fields must be composed of
+uppercase letters, numbers, and underscores, but must not start with an
+underscore. Within these restrictions, any arbitrary field name may be used.
+Some names have special significance: see the
+[journalctl documentation](http://www.freedesktop.org/software/systemd/man/systemd.journal-fields.html)
+for more details. The converter will skip invalid attribute key names and
+transform to upper case. Additionally the fields will be prefixed with
+`SLOG_`.
 
 Other global parameters:
 
@@ -59,7 +66,11 @@ slogjournal.LogLevelToPriority = map[string]journal.Priority{
 }
 ```
 
+Use `slogjournal.FieldPrefix` to customize the fields prefix.
+
 ### Example
+
+For further examples view the tests: [slogjournal_test.go](./slogjournal_test.go)
 
 ```go
 import (
@@ -123,7 +134,6 @@ journaltl --output json-pretty --lines 2 --no-pager SLOG_LOGGER=tschaefer/slog-j
   "SLOG_ERROR_KIND": "*errors.errorString",
   "_GID": "100",
   "_UID": "1000",
-  "SLOG_ATTR": "extra",
   "_AUDIT_SESSION": "1",
   "_SYSTEMD_UNIT": "session-1.scope",
   "MESSAGE": "caramba!",
@@ -157,7 +167,6 @@ journaltl --output json-pretty --lines 2 --no-pager SLOG_LOGGER=tschaefer/slog-j
   "__SEQNUM_ID": "b3c7821dbfce47a59b06797aea9028ca",
   "_SYSTEMD_OWNER_UID": "1000",
   "_UID": "1000",
-  "SLOG_ATTR": "extra",
   "SLOG_USER_ID": "user-123",
   "__MONOTONIC_TIMESTAMP": "464350730219",
   "SLOG_USER_CREATED_AT": "2025-11-16 20:51:50.753821198 +0100 CET",
