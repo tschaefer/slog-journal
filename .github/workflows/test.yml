@@ -1,0 +1,40 @@
+---
+name: Tests
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    tags:
+    branches:
+  pull_request:
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go:
+          - '1.23'
+          - '1.24'
+          - '1.x'
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsystemd-dev
+      - uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+          stable: false
+
+      - name: Build
+        run: make build
+
+      - name: Test
+        run: make test
+
+      - name: Test
+        run: make coverage
