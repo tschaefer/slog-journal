@@ -19,7 +19,7 @@ go get github.com/tschaefer/slog-journal
 
 **Compatibility**: go >= 1.23
 
-No breaking changes will be made to exported APIs.
+No breaking changes will be made to exported APIs before v1.0.0.
 
 ## 💡 Usage
 
