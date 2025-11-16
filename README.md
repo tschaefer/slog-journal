@@ -45,9 +45,9 @@ type Option struct {
 
 Attributes will be injected in journal entry fields. Fields must be composed of
 uppercase letters, numbers, and underscores, but must not start with an
-underscore. Within these restrictions, any arbitrary field name may be used. 
-Some names have special significance: see the journalctl documentation
-(http://www.freedesktop.org/software/systemd/man/systemd.journal-fields.html)
+underscore. Within these restrictions, any arbitrary field name may be used.
+Some names have special significance: see the
+[journalctl documentation](http://www.freedesktop.org/software/systemd/man/systemd.journal-fields.html)
 for more details. The converter will skip invalid attribute key names and
 transform to upper case. Additionally the fields will be prefixed with
 `SLOG_`.
@@ -70,7 +70,7 @@ Use `slogjournal.FieldPrefix` to customize the fields prefix.
 
 ### Example
 
-For further examples view the test.
+For further examples view the tests: [slogjournal_test.go](./slogjournal_test.go)
 
 ```go
 import (
