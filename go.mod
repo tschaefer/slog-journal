@@ -5,7 +5,7 @@ go 1.23.0
 require (
 	github.com/coreos/go-systemd/v22 v22.7.0
 	github.com/google/uuid v1.6.0
-	github.com/samber/slog-common v0.19.0
+	github.com/samber/slog-common v0.20.0
 	github.com/stretchr/testify v1.11.1
 	go.uber.org/goleak v1.3.0
 )
